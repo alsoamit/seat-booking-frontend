@@ -44,15 +44,16 @@ function App() {
           const emptySeats = row.filter((i) => (i ? null : i.toString()));
           // console.log("empty seats", emptySeats);
           emptyRows.push(emptySeats.length);
+          return null;
         });
       }
       // console.log(emptyRows);
 
       // Find the nearest possible row
       let match = null;
-      const nearestRow = emptyRows.map((i) => {
+      emptyRows.map((i) => {
         if (match !== null) {
-          return;
+          return null;
         }
         if (i >= inputVal) {
           match = emptyRows.indexOf(i);
