@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 function App() {
   const [seats, setSeats] = useState(null);
-  const [data, setData] = useState(null);
   const [res, setRes] = useState(null);
   const [inputVal, setInputVal] = useState(0);
 
@@ -10,8 +9,7 @@ function App() {
     fetch("https://seat-booking-api-web.herokuapp.com/seats")
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
-        setData(data[0]);
+        // console.log(data);
         setRes(Object.values(data[0].rows));
       });
   };
@@ -48,7 +46,7 @@ function App() {
           emptyRows.push(emptySeats.length);
         });
       }
-      console.log(emptyRows);
+      // console.log(emptyRows);
 
       // Find the nearest possible row
       let match = null;
@@ -63,16 +61,16 @@ function App() {
           return "not-a-match";
         }
       });
-      console.log("match found", match);
-      console.log(nearestRow);
+      // console.log("match found", match);
+      // console.log(nearestRow);
 
       // Now update the data
       function updater() {
         let seats = [];
         let counter = inputVal;
         let updateVal = null;
-        console.log("updater", res);
-        console.log("updater match", res[match]);
+        // console.log("updater", res);
+        // console.log("updater match", res[match]);
         const updatedRow = res[match].map((i, j) => {
           if (i) {
             return i;
@@ -80,14 +78,14 @@ function App() {
             if (counter > 0) {
               seats.push(j);
               counter = counter - 1;
-              console.log("the counter is", counter);
+              // console.log("the counter is", counter);
               return true;
             } else {
               return i;
             }
           }
         });
-        console.log("updated row", updatedRow);
+        // console.log("updated row", updatedRow);
         updateVal = res;
         updateVal[match] = updatedRow;
         // console.log(updateVal);
@@ -115,7 +113,7 @@ function App() {
       title: "Coach",
     }).then((data) => {
       getData();
-      console.log(data);
+      // console.log(data);
     });
   };
 
